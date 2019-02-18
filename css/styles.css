@@ -1,0 +1,49 @@
+
+body {
+    margin: 60px; /*me*/
+    font-family: Arial, Helvetica, sans-serif;
+    background-color: #FCFCFC;
+}
+header {
+    margin-bottom: 33px;
+}
+h1 {
+    text-transform: uppercase;
+    font-size: 19px; /*me*/
+    font-weight: normal;
+    letter-spacing: 1px;
+    color: #4C4C4C;
+}
+.main-container {
+    display: grid;
+    grid-template-rows: 184px;
+    grid-template-columns: 414px 414px 414px;
+    grid-gap: 38px;
+}
+.employee {
+    display: flex;
+    border: 2px solid #DFDFDF;
+    border-radius: 7px;
+    background-color: #fff;
+    padding: 0 26px;
+    align-items: center;
+}
+.employee-img {
+    width: 127px;
+    height: 128px;
+    border-radius: 50%;
+}
+.employee-info {
+    margin-left: 23px;
+}
+.employee-info h2 {
+    color: #404A51;
+    line-height: 1;
+    margin: 0;
+    font-size: 20px;
+    letter-spacing: 1px;
+}
+.employee-info p {
+    color: #94999D;
+    margin: 10px 0 0 0;
+}
