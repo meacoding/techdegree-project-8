@@ -1,95 +1,91 @@
+const main = document.querySelector('.main-content'); 
+const modal = document.querySelector('.modals');
+
+// ------------------------------------------ 
+// FETCH FUNCTIONS 
+// ------------------------------------------ 
+
+fetch('https://randomuser.me/api/?results=12&nat=us')
+    .then(response => response.json())
+    .then(data => generateEmployeeCard(data.results))
+
+// ------------------------------------------ 
+// HELPER FUNCTIONS 
+// ------------------------------------------ 
+function generateEmployeeCard(data) {
+    for (let i = 0; i < data.length; i++){
+
+        const name = data[i].name.first + " " + data[i].name.last;
+        const email = data[i].email;
+        const city = data[i].location.city;
+        const img = data[i].picture.large;
+        const address = data[i].location.street + " " + data[i].location.city
+            + ", " + data[i].location.state + " " + data[i].location.postcode;
+        const birthday = "Birthday: " + data[i].dob.date;
+        console.log(data);
+
+        const card = `
+            <div class="employee">
+                <img class="employee-img" src="${img}" alt="">
+                <div class="employee-info">
+                    <h2 class="name">${name}</h2>
+                    <p class="email">${email}</p>
+                    <p class="city">${city}</p>
+                </div>
+            </div>
+        `;
+
+        const modal = `
+            <div class=".modal-content" id="emp${i}">
+                <img class="employee-img" src="${img}" alt="">
+                <div class="employee-info">
+                    <h2 class="name">${name}</h2>
+                    <p class="email">${email}</p>
+                    <p class="city">${city}</p>
+                    <div></div>
+                </div>
+            </div>
+        `;
+
+        main.innerHTML += card;
+    };
+    
+
+   
+}
+
+// ------------------------------------------ 
+// EVENT LISTENERS 
+// ------------------------------------------ 
+
+// ------------------------------------------ 
+// POST DATA 
+// ------------------------------------------ 
 
 
 
-// const main = document.querySelector('.main-container'); 
+// Get the modal
+// var modal = document.getElementById('myModal');
 
-// // ------------------------------------------ 
-// // FETCH FUNCTIONS 
-// // ------------------------------------------ 
+// Get the button that opens the modal
+// var btn = document.getElementById("myBtn");
 
-// function fetchData(url) { 
-//   return fetch(url) 
-//     .then(checkStatus)  
-//     .then(res => res.json()) 
-//     .catch(error => console.log('Looks like there was a problem!', error)) 
-// } 
+// Get the <span> element that closes the modal
+// var span = document.getElementsByClassName("close")[0];
 
-// Promise.all([ 
-//   fetchData('https://randomuser.me/api/?results=12&nat=us'),  
-// ]) 
-//   .then(data => { 
-//     const breedList = data[0].message; 
-//     generateOptions(breedList); 
-// }) 
+// When the user clicks on the button, open the modal 
+// btn.onclick = function() {
+//   modal.style.display = "block";
+// }
 
-// // ------------------------------------------ 
-// // HELPER FUNCTIONS 
-// // ------------------------------------------ 
+// When the user clicks on <span> (x), close the modal
+// span.onclick = function() {
+//   modal.style.display = "none";
+// }
 
-// function checkStatus(response) { 
-//   if (response.ok) { 
-//     return Promise.resolve(response); 
-//   } else { 
-//     return Promise.reject(new Error(response.statusText)); 
-//   } 
-// } 
-
-// function generateOptions(data) { 
-//   const options = data.map(item => ` 
-//     <option value='${item}'>${item}</option> 
-//     `).join(''); 
-//   select.innerHTML = options; 
-// } 
-
-// function generateImage(data) { 
-//   const html = ` 
-//     <img src='${data}' alt> 
-//     <p>Click to view images of ${select.value}s</p> 
-//   `; 
-//   card.innerHTML = html; 
-// } 
-
-// function fetchBreedImage() { 
-//   const breed = select.value; 
-//   const img = card.querySelector('img'); 
-//   const p = card.querySelector('p'); 
-
-//   fetchData(`https://dog.ceo/api/breed/${breed}/images/random`) 
-//     .then(data => { 
-//       img.src = data.message; 
-//       img.alt = breed; 
-//       p.textContent = `Click to view more ${breed}s`; 
-//     }) 
-// } 
-
-// // ------------------------------------------ 
-// // EVENT LISTENERS 
-// // ------------------------------------------ 
-
-// select.addEventListener('change', fetchBreedImage); 
-// card.addEventListener('click', fetchBreedImage); 
-// form.addEventListener('submit', postData); 
-
-// // ------------------------------------------ 
-// // POST DATA 
-// // ------------------------------------------ 
-
-// function postData(e) { 
-//   e.preventDefault(); 
-//   const name = document.getElementById('name').value; 
-//   const comment = document.getElementById('comment').value; 
-//   const config = { 
-
-//     method: 'POST', 
-//     headers: { 
-//       'Content-Type': 'application/json' 
-//   }, 
-//   body: JSON.stringify({ name, comment })  
-
-// } 
-
-// fetch('https://jsonplaceholder.typicode.com/comments', config) 
-//   .then(checkStatus) 
-//   .then(res => res.json()) 
-//   .then(data => console.log(data)) 
-// } 
+// When the user clicks anywhere outside of the modal, close it
+// window.onclick = function(event) {
+//   if (event.target == modal) {
+//     modal.style.display = "none";
+//   }
+// }

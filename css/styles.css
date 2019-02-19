@@ -1,10 +1,13 @@
-
+html {
+    display: flex;
+    justify-content: center;    
+}
 body {
     margin: 60px; /*me*/
     font-family: Arial, Helvetica, sans-serif;
     background-color: #FCFCFC;
 }
-header {
+.header {
     margin-bottom: 33px;
 }
 h1 {
@@ -14,9 +17,9 @@ h1 {
     letter-spacing: 1px;
     color: #4C4C4C;
 }
-.main-container {
+.main-content {
     display: grid;
-    grid-template-rows: 184px;
+    grid-template-rows: repeat(4, 184px);
     grid-template-columns: 414px 414px 414px;
     grid-gap: 38px;
 }
@@ -42,8 +45,52 @@ h1 {
     margin: 0;
     font-size: 20px;
     letter-spacing: 1px;
+    text-transform: capitalize;
 }
 .employee-info p {
     color: #94999D;
     margin: 10px 0 0 0;
 }
+.city {
+    text-transform: capitalize;
+} 
+
+
+
+The Modal (background)
+.modals---- {
+    display: none; /* Hidden by default */
+    position: fixed; /* Stay in place */
+    z-index: 1; /* Sit on top */
+    left: 0;
+    top: 0;
+    width: 100%; /* Full width */
+    height: 100%; /* Full height */
+    overflow: auto; /* Enable scroll if needed */
+    background-color: rgb(0,0,0); /* Fallback color */
+    background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+  }
+  
+  /* Modal Content/Box */
+  .modal-content---- {
+    background-color: #fefefe;
+    margin: 15% auto; /* 15% from the top and centered */
+    padding: 20px;
+    border: 1px solid #888;
+    width: 80%; /* Could be more or less, depending on screen size */
+  }
+  
+  /* The Close Button */
+  .close--- {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+  }
+  
+  .close:hover---,
+  .close:focus--- {
+    color: black;
+    text-decoration: none;
+    cursor: pointer;
+  }
