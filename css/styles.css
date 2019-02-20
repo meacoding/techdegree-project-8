@@ -33,7 +33,8 @@ h1 {
 }
 .employee-img {
     width: 127px;
-    height: 128px;
+    min-width: 127px;
+    height: 127px;
     border-radius: 50%;
 }
 .employee-info {
@@ -57,8 +58,8 @@ h1 {
 
 
 
-The Modal (background)
-.modals---- {
+/* The Modal (background) */
+.modals {
     display: none; /* Hidden by default */
     position: fixed; /* Stay in place */
     z-index: 1; /* Sit on top */
@@ -72,12 +73,16 @@ The Modal (background)
   }
   
   /* Modal Content/Box */
-  .modal-content---- {
+  .modal-content {
     background-color: #fefefe;
     margin: 15% auto; /* 15% from the top and centered */
     padding: 20px;
     border: 1px solid #888;
     width: 80%; /* Could be more or less, depending on screen size */
+  }
+
+  #emp0, #emp1, #emp2, #emp3, #emp4, #emp5, #emp6, #emp7, #emp8, #emp9, #emp10, #emp11, #emp12 {
+      display: none;
   }
   
   /* The Close Button */

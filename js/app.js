@@ -1,5 +1,6 @@
 const main = document.querySelector('.main-content'); 
-const modal = document.querySelector('.modals');
+const modals = document.querySelector('.modals');
+const modalContent = document.querySelectorAll('.modal-content');
 
 // ------------------------------------------ 
 // FETCH FUNCTIONS 
@@ -13,6 +14,8 @@ fetch('https://randomuser.me/api/?results=12&nat=us')
 // HELPER FUNCTIONS 
 // ------------------------------------------ 
 function generateEmployeeCard(data) {
+    console.log(data);
+
     for (let i = 0; i < data.length; i++){
 
         const name = data[i].name.first + " " + data[i].name.last;
@@ -22,36 +25,63 @@ function generateEmployeeCard(data) {
         const address = data[i].location.street + " " + data[i].location.city
             + ", " + data[i].location.state + " " + data[i].location.postcode;
         const birthday = "Birthday: " + data[i].dob.date;
-        console.log(data);
 
-        const card = `
-            <div class="employee">
-                <img class="employee-img" src="${img}" alt="">
-                <div class="employee-info">
-                    <h2 class="name">${name}</h2>
-                    <p class="email">${email}</p>
-                    <p class="city">${city}</p>
-                </div>
+        // const card = `
+        //     <div class="employee">
+        //         <img class="employee-img" src="${img}" alt="">
+        //         <div class="employee-info">
+        //             <h2 class="name">${name}</h2>
+        //             <p class="email">${email}</p>
+        //             <p class="city">${city}</p>
+        //         </div>
+        //     </div>
+        // `;
+
+        const card = document.createElement('div');
+        card.classList = 'employee';
+        const htmlCard = `
+            <img class="employee-img" src="${img}" alt="">
+            <div class="employee-info">
+                <h2 class="name">${name}</h2>
+                <p class="email">${email}</p>
+                <p class="city">${city}</p>
             </div>
         `;
+        card.innerHTML = htmlCard;
+        main.appendChild(card);
 
-        const modal = `
-            <div class=".modal-content" id="emp${i}">
-                <img class="employee-img" src="${img}" alt="">
-                <div class="employee-info">
-                    <h2 class="name">${name}</h2>
-                    <p class="email">${email}</p>
-                    <p class="city">${city}</p>
-                    <div></div>
-                </div>
+        // const modal = `
+        //     <div class="modal-content" id="emp${i}">
+        //         <img class="employee-img" src="${img}" alt="">
+        //         <div class="employee-info">
+        //             <h2 class="name">${name}</h2>
+        //             <p class="email">${email}</p>
+        //             <p class="city">${city}</p>
+        //             <div></div>
+        //         </div>
+        //     </div>
+        // `;
+
+
+        const modal = document.createElement('div');
+        modal.classList = 'modal-content';
+        modal.id = `emp${i}`;
+        const htmlModal = `
+            <img class="employee-img" src="${img}" alt="">
+            <div class="employee-info">
+                <h2 class="name">${name}</h2>
+                <p class="email">${email}</p>
+                <p class="city">${city}</p>
+                <div></div>
             </div>
         `;
+        modal.innerHTML = htmlModal;
+        modals.appendChild(modal);
+        
 
-        main.innerHTML += card;
+        // main.insertAdjacentHTML("afterbegin", card);
+        // modals.insertAdjacentHTML("afterbegin", modal);
     };
-    
-
-   
 }
 
 // ------------------------------------------ 
@@ -65,18 +95,40 @@ function generateEmployeeCard(data) {
 
 
 // Get the modal
-// var modal = document.getElementById('myModal');
-
-// Get the button that opens the modal
-// var btn = document.getElementById("myBtn");
+// const employee = document.querySelectorAll('.employee')[0];
 
 // Get the <span> element that closes the modal
 // var span = document.getElementsByClassName("close")[0];
 
-// When the user clicks on the button, open the modal 
-// btn.onclick = function() {
-//   modal.style.display = "block";
+// When the user clicks on the button, open the modal
+// window.onload = function() {
+    // const emp = document.querySelector('#emp0'); 
+    // console.log(emp, "emp")
+    const emp = document.querySelector('#emp0');
+    console.log(emp, "const emp = document.querySelector('#emp0'); console.log(emp, 'emp')");
+
+    $( emp ).click(function() {
+        console.log("hi");
+        for (let i = 0; i < employee.length; i++) {
+            console.log(employee.length);
+            if (event.target === employee[i]) {
+                const empID = `#emp${i}`
+                const emp = document.querySelector(empID);
+                console.log(empID, "empID");
+                modals.style.display = "block";
+                emp.style.display = "block";
+            }
+        }
+    });
 // }
+
+
+// const emp = document.getElementById('emp0');
+// console.log(emp, "emp");
+
+// emp.addEventListener('click', function(event) {
+//     console.log('hi');
+// });
 
 // When the user clicks on <span> (x), close the modal
 // span.onclick = function() {
@@ -84,8 +136,8 @@ function generateEmployeeCard(data) {
 // }
 
 // When the user clicks anywhere outside of the modal, close it
-// window.onclick = function(event) {
-//   if (event.target == modal) {
-//     modal.style.display = "none";
-//   }
-// }
+window.onclick = function(event) {
+  if (event.target == modals) {
+    modals.style.display = "none";
+  }
+}
