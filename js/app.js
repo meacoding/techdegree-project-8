@@ -81,6 +81,30 @@ function generateEmployeeCard(data) {
 
         // main.insertAdjacentHTML("afterbegin", card);
         // modals.insertAdjacentHTML("afterbegin", modal);
+        // let index = $('.employee').index(this);
+
+        $('.employee').click(function(){
+            let index = $('.employee').index(this);
+            $('.modals').fadeIn();
+            $(`#emp${index}`).fadeIn();
+        })
+
+
+        // $( `#emp${index}` ).click(function() {
+        //     console.log("hi");
+        //     for (let i = 0; i < employee.length; i++) {
+        //         console.log(employee.length);
+        //         if (event.target === employee[i]) {
+        //             const empID = `#emp${i}`
+        //             const emp = document.querySelector(empID);
+        //             console.log(empID, "empID");
+        //             modals.style.display = "block";
+        //             emp.style.display = "block";
+        //             $('.modal-content').hide();
+        //         }
+        //     }
+        // });
+
     };
 }
 
@@ -104,22 +128,10 @@ function generateEmployeeCard(data) {
 // window.onload = function() {
     // const emp = document.querySelector('#emp0'); 
     // console.log(emp, "emp")
-    const emp = document.querySelector('#emp0');
-    console.log(emp, "const emp = document.querySelector('#emp0'); console.log(emp, 'emp')");
+    // const emp = document.querySelector('#emp0');
+    // console.log(emp, "const emp = document.querySelector('#emp0'); console.log(emp, 'emp')");
 
-    $( emp ).click(function() {
-        console.log("hi");
-        for (let i = 0; i < employee.length; i++) {
-            console.log(employee.length);
-            if (event.target === employee[i]) {
-                const empID = `#emp${i}`
-                const emp = document.querySelector(empID);
-                console.log(empID, "empID");
-                modals.style.display = "block";
-                emp.style.display = "block";
-            }
-        }
-    });
+    
 // }
 
 
