@@ -13,7 +13,7 @@ fetch('https://randomuser.me/api/?results=12&nat=us')
 // HELPER FUNCTIONS 
 // ------------------------------------------ 
 function generateEmployeeCard(data) {
-    console.log(data);
+    // console.log(data);
 
     for (let i = 0; i < data.length; i++){
 
@@ -24,8 +24,26 @@ function generateEmployeeCard(data) {
         const phone = data[i].phone;
         const address = data[i].location.street + " " + data[i].location.city
             + ", " + data[i].location.state + " " + data[i].location.postcode;
-        const birthday = "Birthday: " + data[i].dob.date;
-
+        
+        const date = new Date(data[i].dob.date);
+        function formatDate(date) {
+            
+            const monthNames = [
+                "January", "February", "March",
+                "April", "May", "June", "July",
+                "August", "September", "October",
+                "November", "December"
+            ];
+            const day = date.getDate();
+            const monthIndex = date.getMonth();
+            const year = date.getFullYear();
+            
+            return `${monthNames[monthIndex]} ${day}, ${year}`;
+        }
+        
+        const birthday = `Birthday: ${formatDate(date)}`;
+        
+        // Create employee card
         const card = document.createElement('div');
         card.classList = 'employee';
         const htmlCard = `
@@ -39,6 +57,7 @@ function generateEmployeeCard(data) {
         card.innerHTML = htmlCard;
         main.appendChild(card);
 
+        // Create employee card modal
         const modal = document.createElement('div');
         modal.classList = 'modal-content';
         modal.id = `emp${i}`;
@@ -64,6 +83,7 @@ function generateEmployeeCard(data) {
         modal.innerHTML = htmlModal;
         modals.appendChild(modal);
 
+        // Display modal for employee clicked
         $('.employee').click(function(){
             let index = $('.employee').index(this);
             $('.modals').fadeIn();
@@ -71,14 +91,14 @@ function generateEmployeeCard(data) {
                 this.style.display = "flex";
             });
         })
+
+        // Close modal by pressing X
         $('.close').click(function(){
             $(modal).hide();
             $(modals).hide();
         })
-        
-        const modalContent = document.querySelectorAll('.modal-content');
-        // console.log(modalContent);
 
+        // Close modal by pressing outside modal card
         $(modals).click(function(event){
             if (event.target == modals) {
                 $(modal).hide();
@@ -86,9 +106,7 @@ function generateEmployeeCard(data) {
             }
         })
 
-        // var id = $('.next').parent().parent().next();
-        // console.log(id);
-
+        // Press > goes to next employee modal
         $('.next').click(function() {
             var $id = $(this).parent().parent();
             var $next = $id.next();
@@ -101,6 +119,7 @@ function generateEmployeeCard(data) {
             $($id).hide();
         })
 
+        // Press < goes to previous employee modal
         $('.previous').click(function() {
             var $id = $(this).parent().parent();
             var $prev = $id.prev();
@@ -108,43 +127,88 @@ function generateEmployeeCard(data) {
             if( $prev.length == 0 ) {
                 $prev = $id.nextAll().last();
             }
-            // console.log(id);
             $($prev).show().css('display', 'flex');
             $($id).hide();
+        })
+
+        // Function for input field for searching employees by name or email
+        // Project calls for searching name or username but at no point do we 
+        // handle usernames in this project.
+
+        function filterNames() {
+            //Get value of .search input
+            let $searchInput = $('#search')
+              .val()
+              .toUpperCase();
+        
+            //Locate all names tied to .name
+            let $names = $('.name');
+            let $emails = $('.email');
+        
+            //Loop through names or email addresses.
+            for (let i = 0; i < $names.length; i++) {
+              let $name = $($names[i]).text();
+              let $email = $($emails[i]).text();
+        
+              //If matched, filter out images
+              if ($name.toUpperCase().indexOf($searchInput) > -1 || 
+                  $email.toUpperCase().indexOf($searchInput) > -1) {
+                $($names[i]).parent().parent().css({ display: "" });
+              } else {
+                $($names[i]).parent().parent().css({ display: "none" });
+              }
+            }
+        }
+
+        //Event listener for input field
+        $('#search').keyup(filterNames);
+
+        
+        // Project calls to add a hover state to entire row.
+        // This isn't an elegant solution by any means but it works.
+
+        $('.employee').mouseover(function(){
+            let index = $('.employee').index(this);
+            if (index === 0 || index === 1 || index === 2) {
+                $('.employee').eq(0).css('background-color', 'skyblue');
+                $('.employee').eq(1).css('background-color', 'skyblue');
+                $('.employee').eq(2).css('background-color', 'skyblue');
+            } else if (index === 3 || index === 4 || index === 5) {
+                $('.employee').eq(3).css('background-color', 'skyblue');
+                $('.employee').eq(4).css('background-color', 'skyblue');
+                $('.employee').eq(5).css('background-color', 'skyblue');
+            } else if (index === 6 || index === 7 || index === 8) {
+                $('.employee').eq(6).css('background-color', 'skyblue');
+                $('.employee').eq(7).css('background-color', 'skyblue');
+                $('.employee').eq(8).css('background-color', 'skyblue');
+            } else if (index === 9 || index === 10 || index === 11) {
+                $('.employee').eq(9).css('background-color', 'skyblue');
+                $('.employee').eq(10).css('background-color', 'skyblue');
+                $('.employee').eq(11).css('background-color', 'skyblue');
+            }
+        });
+
+        $('.employee').mouseleave(function(){
+            let index = $('.employee').index(this);
+            if (index === 0 || index === 1 || index === 2) {
+                $('.employee').eq(0).css('background-color', '#fff');
+                $('.employee').eq(1).css('background-color', '#fff');
+                $('.employee').eq(2).css('background-color', '#fff');
+            } else if (index === 3 || index === 4 || index === 5) {
+                $('.employee').eq(3).css('background-color', '#fff');
+                $('.employee').eq(4).css('background-color', '#fff');
+                $('.employee').eq(5).css('background-color', '#fff');
+            } else if (index === 6 || index === 7 || index === 8) {
+                $('.employee').eq(6).css('background-color', '#fff');
+                $('.employee').eq(7).css('background-color', '#fff');
+                $('.employee').eq(8).css('background-color', '#fff');
+            } else if (index === 9 || index === 10 || index === 11) {
+                $('.employee').eq(9).css('background-color', '#fff');
+                $('.employee').eq(10).css('background-color', '#fff');
+                $('.employee').eq(11).css('background-color', '#fff');
+            }
         })
 
     };
     
 }
-
-window.onclick = function(event) {
-    if (event.target == modals) {
-      modals.style.display = "none";
-    }
-}
-
-// ------------------------------------------ 
-// EVENT LISTENERS 
-// ------------------------------------------ 
-
-// ------------------------------------------ 
-// POST DATA 
-// ------------------------------------------ 
-
-
-
-// Get the modal
-// const employee = document.querySelectorAll('.employee')[0];
-
-// Get the <span> element that closes the modal
-// var span = document.getElementsByClassName("close")[0];
-
-// When the user clicks on the button, open the modal
-// window.onload = function() {
-    // const emp = document.querySelector('#emp0'); 
-    // console.log(emp, "emp")
-    // const emp = document.querySelector('#emp0');
-    // console.log(emp, "const emp = document.querySelector('#emp0'); console.log(emp, 'emp')");
-
-    
-// }
