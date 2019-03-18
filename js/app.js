@@ -16,6 +16,7 @@ function generateEmployeeCard(data) {
     console.log(data);
 
     for (let i = 0; i < data.length; i++){
+        const dob = new Date(data[i].dob.date);
 
         const name = data[i].name.first + " " + data[i].name.last;
         const email = data[i].email;
@@ -24,7 +25,7 @@ function generateEmployeeCard(data) {
         const phone = data[i].phone;
         const address = data[i].location.street + " " + data[i].location.city
             + ", " + data[i].location.state + " " + data[i].location.postcode;
-        const birthday = "Birthday: " + data[i].dob.date;
+        const birthday = "Birthday: " + dob.toDateString();
 
         const card = document.createElement('div');
         card.classList = 'employee';
@@ -77,7 +78,6 @@ function generateEmployeeCard(data) {
         })
         
         const modalContent = document.querySelectorAll('.modal-content');
-        // console.log(modalContent);
 
         $(modals).click(function(event){
             if (event.target == modals) {
@@ -85,9 +85,6 @@ function generateEmployeeCard(data) {
                 $(modals).hide();
             }
         })
-
-        // var id = $('.next').parent().parent().next();
-        // console.log(id);
 
         $('.next').click(function() {
             var $id = $(this).parent().parent();
@@ -108,7 +105,6 @@ function generateEmployeeCard(data) {
             if( $prev.length == 0 ) {
                 $prev = $id.nextAll().last();
             }
-            // console.log(id);
             $($prev).show().css('display', 'flex');
             $($id).hide();
         })
@@ -122,29 +118,3 @@ window.onclick = function(event) {
       modals.style.display = "none";
     }
 }
-
-// ------------------------------------------ 
-// EVENT LISTENERS 
-// ------------------------------------------ 
-
-// ------------------------------------------ 
-// POST DATA 
-// ------------------------------------------ 
-
-
-
-// Get the modal
-// const employee = document.querySelectorAll('.employee')[0];
-
-// Get the <span> element that closes the modal
-// var span = document.getElementsByClassName("close")[0];
-
-// When the user clicks on the button, open the modal
-// window.onload = function() {
-    // const emp = document.querySelector('#emp0'); 
-    // console.log(emp, "emp")
-    // const emp = document.querySelector('#emp0');
-    // console.log(emp, "const emp = document.querySelector('#emp0'); console.log(emp, 'emp')");
-
-    
-// }
