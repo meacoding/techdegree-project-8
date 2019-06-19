@@ -19,7 +19,7 @@ JavaScript/jQuery drives the interactivity. Employee data retrieved with Fetch. 
  
 ## Backstory
 
-This was another exercise in JavaScript. Fetch the employee data, display it and make it searchable. I discovered a kind of programming hell known as "formatting timestamps." 
+This was another exercise in JavaScript. Fetch the employee data, display it and make it searchable. I discovered a kind of programming hell which involves converting timestamps into formatted date and time.
 
 
 ## License
