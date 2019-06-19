@@ -2,6 +2,8 @@
 
 A searchable employee directory.  
 
+![mockup-minimal-browser-p8-50](https://user-images.githubusercontent.com/16675876/59797475-c5615a80-92ad-11e9-9a85-5f150c9954b4.png)
+
 ## Technologies and skills used 
 
 + HTML
