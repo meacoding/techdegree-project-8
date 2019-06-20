@@ -17,7 +17,7 @@ To build a searchable employee directory with JavaScript for the Treehouse Techd
 
 ## What I did
 
-JavaScript/jQuery drives the interactivity. Employee data retrieved with Fetch. This project matches the mockup provided. It's for large screens only.
+JavaScript/jQuery drives the interactivity. Employee data retrieved with Fetch. Matches provided mockup. For large screens only.
  
 ## Backstory
 
